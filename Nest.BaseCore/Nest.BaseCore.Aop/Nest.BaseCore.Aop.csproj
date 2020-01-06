@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Common\Nest.BaseCore.Common.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Log\Nest.BaseCore.Log.csproj" />
+  </ItemGroup>
+
 </Project>

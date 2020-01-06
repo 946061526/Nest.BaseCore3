@@ -4,4 +4,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Senparc.Weixin" Version="6.6.104.1" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\resource\外部dll\ChnCharInfo.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

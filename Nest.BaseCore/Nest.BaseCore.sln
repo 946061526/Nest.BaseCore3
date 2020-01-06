@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Aop", "Nest.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Cache", "Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj", "{9A2505C9-4D59-44FB-A364-C6BB5AE917ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Domian", "Nest.BaseCore.Domian\Nest.BaseCore.Domian.csproj", "{0948B153-D40C-4DC4-BE5D-7C8F540A2FE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Domain", "Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj", "{0948B153-D40C-4DC4-BE5D-7C8F540A2FE8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Log", "Nest.BaseCore.Log\Nest.BaseCore.Log.csproj", "{4D8CC385-D5E0-4A87-B405-031B8DE90A7B}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.基础设施层", "5.基础设施层", "{B8494E97-9BB7-4F69-93A9-16E97DB4028A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.单元测试", "6.单元测试", "{8DEB08F5-FF91-42D3-9E3F-4FFF01558E82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.ApiTest", "Nest.BaseCore.ApiTest\Nest.BaseCore.ApiTest.csproj", "{21B406AC-7781-4B66-A9B5-E3E01FCD284F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{5C4154F3-F4C1-439A-9D57-FE58583D61D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C4154F3-F4C1-439A-9D57-FE58583D61D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C4154F3-F4C1-439A-9D57-FE58583D61D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B406AC-7781-4B66-A9B5-E3E01FCD284F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B406AC-7781-4B66-A9B5-E3E01FCD284F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B406AC-7781-4B66-A9B5-E3E01FCD284F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B406AC-7781-4B66-A9B5-E3E01FCD284F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{0969E051-6301-4102-9A34-110FE18C450E} = {28281AFA-C8C5-4463-B12B-F0122DD6E808}
 		{04715681-FAAF-4952-953A-95818EB615D0} = {8DEB08F5-FF91-42D3-9E3F-4FFF01558E82}
 		{5C4154F3-F4C1-439A-9D57-FE58583D61D4} = {2AA06D17-4B36-454B-8442-C373DDA811C6}
+		{21B406AC-7781-4B66-A9B5-E3E01FCD284F} = {2AA06D17-4B36-454B-8442-C373DDA811C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBE6442F-48F9-43D7-8FD4-4000D676D3FA}

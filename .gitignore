@@ -21,3 +21,10 @@
 /Nest.BaseCore/Nest.BaseCore.Web/obj
 /Nest.BaseCore/Nest.BaseCore.Api/bin
 /Nest.BaseCore/Nest.BaseCore.Api/obj
+/Nest.BaseCore/Nest.BaseCore.Domain/bin
+/Nest.BaseCore/Nest.BaseCore.Domain/obj
+/Nest.BaseCore/Nest.BaseCore.ApiTest/bin
+/Nest.BaseCore/Nest.BaseCore.ApiTest/obj
+/Nest.BaseCore/Nest.BaseCore.Api/*.user
+/Nest.BaseCore/Nest.BaseCore.Api/Log
+/Nest.BaseCore/Nest.BaseCore.ApiTest

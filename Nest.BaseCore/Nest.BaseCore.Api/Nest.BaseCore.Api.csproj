@@ -4,5 +4,32 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+    <DocumentationFile>bin\Debug\netcoreapp3.1\SwaggerDoc.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspectCore.Extensions.Autofac" Version="2.0.0" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Autofac.Configuration" Version="4.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="DotNetCore.CAP" Version="3.0.0" />
+    <PackageReference Include="DotNetCore.CAP.MySql" Version="3.0.0" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nest.BaseCore.Aop\Nest.BaseCore.Aop.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Common\Nest.BaseCore.Common.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Log\Nest.BaseCore.Log.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Repository\Nest.BaseCore.Repository.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Service\Nest.BaseCore.Service.csproj" />
+  </ItemGroup>
+
 
 </Project>
