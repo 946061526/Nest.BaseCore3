@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Enums
 {
     /// <summary>
     /// 性别 0男/1女

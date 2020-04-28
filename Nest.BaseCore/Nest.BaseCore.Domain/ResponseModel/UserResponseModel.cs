@@ -8,6 +8,8 @@ namespace Nest.BaseCore.Domain.ResponseModel
     {
     }
 
+    public class QueryUserResponseModel { }
+
     /// <summary>
     /// 登录返回
     /// </summary>

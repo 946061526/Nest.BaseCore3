@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Nest.BaseCore.Common.Enums;
+using System;
 using System.Linq;
 using System.Text;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Extension
 {
     /// <summary>
     /// 字符串扩展类

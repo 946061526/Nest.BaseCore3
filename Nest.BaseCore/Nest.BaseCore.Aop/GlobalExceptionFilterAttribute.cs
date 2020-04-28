@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Nest.BaseCore.Common;
+using Nest.BaseCore.Common.BaseModel;
 using Nest.BaseCore.Log;
-using System;
 using System.Net;
 
 namespace Nest.BaseCore.Aop
@@ -12,11 +11,11 @@ namespace Nest.BaseCore.Aop
     /// </summary>
     public class GlobalExceptionAttribute : IExceptionFilter
     {
-        private readonly IExceptionlessLogger _exceptionlessLogger;
-        public GlobalExceptionAttribute(IExceptionlessLogger exceptionlessLogger)
-        {
-            _exceptionlessLogger = exceptionlessLogger;
-        }
+        //private readonly IExceptionlessLogger _exceptionlessLogger;
+        //public GlobalExceptionAttribute(IExceptionlessLogger exceptionlessLogger)
+        //{
+        //    _exceptionlessLogger = exceptionlessLogger;
+        //}
 
         public void OnException(ExceptionContext context)
         {

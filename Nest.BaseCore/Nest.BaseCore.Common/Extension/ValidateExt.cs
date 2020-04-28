@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Extension
 {
     /// <summary>
     /// 验证扩展

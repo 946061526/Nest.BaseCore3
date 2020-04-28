@@ -5,15 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="Senparc.Weixin" Version="6.6.104.1" />
-    <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
+    <Folder Include="BaseModel\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Security\" />
+    <Folder Include="WeixinHelper\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ChnCharInfo">
-      <HintPath>..\resource\外部dll\ChnCharInfo.dll</HintPath>
-    </Reference>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="MessagingToolkit.QRCode" Version="1.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.3" />
+    <PackageReference Include="PinYinConverterCore" Version="1.0.2" />
+    <PackageReference Include="Senparc.Weixin" Version="6.7.500" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.10.500" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="ZXing" Version="2.1.1" />
+    <PackageReference Include="ZXing.Net" Version="0.16.5" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
   </ItemGroup>
 
 </Project>

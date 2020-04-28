@@ -2,7 +2,7 @@
 using Senparc.Weixin.MP.AdvancedAPIs.TemplateMessage;
 using Senparc.Weixin.MP.Containers;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.WeixinHelper
 {
     /// <summary>
     /// 微信辅助类

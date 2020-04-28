@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace Nest.BaseCore.Common
 {
@@ -93,5 +99,60 @@ namespace Nest.BaseCore.Common
             }
             return strResult;
         }
+
+        public static Stream Post(string url, Dictionary<string, object> paras, string method = "POST")
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentNullException("url");
+            }
+
+            HttpWebRequest request = null;
+            //如果是发送HTTPS请求  
+            if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
+            {
+                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult1);
+                request = WebRequest.Create(url) as HttpWebRequest;
+                request.ProtocolVersion = HttpVersion.Version10;
+            }
+            else
+            {
+                request = WebRequest.Create(url) as HttpWebRequest;
+            }
+            request.Method = method;
+            request.ContentType = "application/x-www-form-urlencoded";
+
+            //如果需要POST数据  
+            if (!(paras == null || paras.Count == 0))
+            {
+                StringBuilder buffer = new StringBuilder();
+                int i = 0;
+                foreach (string key in paras.Keys)
+                {
+                    if (i > 0)
+                    {
+                        buffer.AppendFormat("&{0}={1}", key, paras[key].ToString());
+                    }
+                    else
+                    {
+                        buffer.AppendFormat("{0}={1}", key, paras[key].ToString());
+                    }
+                    i++;
+                }
+                byte[] data = Encoding.UTF8.GetBytes(buffer.ToString());
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+            }
+            return request.GetResponse().GetResponseStream();
+        }
+        private static bool CheckValidationResult1(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            return true;
+        }
+
+
     }
 }

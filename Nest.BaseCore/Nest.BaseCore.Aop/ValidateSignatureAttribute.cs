@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Nest.BaseCore.Cache;
 using Nest.BaseCore.Common;
+using Nest.BaseCore.Common.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,7 +46,7 @@ namespace Nest.BaseCore.Aop
 
             string ticket = "";
             var secret = "";
-            if (context.RouteData.Values["Action"].ToString() != "GetAppTicket")
+            if (context.RouteData.Values["Action"].ToString().ToLower() != "getappticket")
             {
                 if (request.Headers.ContainsKey(TicketKey))
                 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Nest.BaseCore.Common;
+using Nest.BaseCore.Common.Enums;
 
 namespace Nest.BaseCore.Domain.RequestModel
 {
@@ -50,6 +51,8 @@ namespace Nest.BaseCore.Domain.RequestModel
         [Required]
         public int Sort { get; set; } = 0;
     }
+
+    public class EditMenuRequestModel { }
 
     /// <summary>
     /// 查询菜单 参数

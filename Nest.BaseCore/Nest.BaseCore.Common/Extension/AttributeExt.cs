@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Extension
 {
     public static class AttributeExt
     {

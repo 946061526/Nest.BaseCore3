@@ -2,7 +2,7 @@
 using Senparc.Weixin.MP.AdvancedAPIs.TemplateMessage;
 using System.Collections.Generic;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.WeixinHelper
 {
     /// <summary>
     /// 微信模板

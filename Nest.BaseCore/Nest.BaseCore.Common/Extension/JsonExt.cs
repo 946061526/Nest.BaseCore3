@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Extension
 {
     public static class JsonExt
     {

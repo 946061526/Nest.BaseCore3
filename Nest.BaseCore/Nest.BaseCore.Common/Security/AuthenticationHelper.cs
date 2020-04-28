@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nest.BaseCore.Common.BaseModel;
+using Nest.BaseCore.Common.Extension;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

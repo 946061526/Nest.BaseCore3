@@ -14,23 +14,23 @@ namespace Nest.BaseCore.Log
         /// </summary>
         /// <param name="source">来源</param>
         /// <param name="message">内容</param>
-        /// <param name="args">参数</param>
-        void Debug(string source, string message, params string[] args);
+        /// <param name="tags">标签</param>
+        void Debug(string source, string message, params string[] tags);
 
         /// <summary>
         /// 错误、异常信息
         /// </summary>
         /// <param name="source">来源</param>
         /// <param name="message">内容</param>
-        /// <param name="args">参数</param>
-        void Error(string source, string message, params string[] args);
+        /// <param name="tags">标签</param>
+        void Error(string source, string message, params string[] tags);
         
         /// <summary>
         /// 正常信息
         /// </summary>
         /// <param name="source">来源</param>
         /// <param name="message">内容</param>
-        /// <param name="args">参数</param>
-        void Info(string source, string message, params string[] args);
+        /// <param name="tags">标签</param>
+        void Info(string source, string message, params string[] tags);
     }
 }

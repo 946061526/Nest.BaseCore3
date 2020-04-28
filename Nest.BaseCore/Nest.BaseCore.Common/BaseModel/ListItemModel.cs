@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.BaseModel
 {
     /// <summary>
     /// 树形或下拉 数据模型

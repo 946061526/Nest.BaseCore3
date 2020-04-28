@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Nest.BaseCore.Common;
+using Nest.BaseCore.Common.Enums;
 
 namespace Nest.BaseCore.Domain.ResponseModel
 {

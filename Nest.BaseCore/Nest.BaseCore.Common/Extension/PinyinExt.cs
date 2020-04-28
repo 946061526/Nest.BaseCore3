@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.International.Converters.PinYinConverter;//导入拼音相关
+﻿using Microsoft.International.Converters.PinYinConverter;//导入拼音相关
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Extension
 {
     public static class PinyinExt
     {

@@ -37,55 +37,5 @@ namespace Nest.BaseCore.Cache
                 return RedisClient.Instance.GetDatabase(2);
             }
         }
-        /// <summary>
-        /// 基础服务库, db3
-        /// </summary>
-        public static IDatabase DB_BasicService
-        {
-            get
-            {
-                return RedisClient.Instance.GetDatabase(3);
-            }
-        }
-        /// <summary>
-        /// 设备服务库, db4
-        /// </summary>
-        public static IDatabase DB_DeviceService
-        {
-            get
-            {
-                return RedisClient.Instance.GetDatabase(4);
-            }
-        }        
-        /// <summary>
-        /// 请假服务库, db7
-        /// </summary>
-        public static IDatabase DB_LeaveService
-        {
-            get
-            {
-                return RedisClient.Instance.GetDatabase(7);
-            }
-        }
-        /// <summary>
-        /// 记录服务库, db8
-        /// </summary>
-        public static IDatabase DB_RecordService
-        {
-            get
-            {
-                return RedisClient.Instance.GetDatabase(8);
-            }
-        }
-        /// <summary>
-        /// 微信服务库, db9
-        /// </summary>
-        public static IDatabase DB_WechatService
-        {
-            get
-            {
-                return RedisClient.Instance.GetDatabase(9);
-            }
-        }
     }
 }

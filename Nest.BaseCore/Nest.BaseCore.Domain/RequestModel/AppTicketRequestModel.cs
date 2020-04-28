@@ -1,8 +1,6 @@
-﻿using Nest.BaseCore.Common;
-using System;
-using System.Collections.Generic;
+﻿using Nest.BaseCore.Common.BaseModel;
+using Nest.BaseCore.Common.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Nest.BaseCore.Domain.RequestModel
 {

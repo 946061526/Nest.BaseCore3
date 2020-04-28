@@ -1,10 +1,11 @@
 ﻿
+using Nest.BaseCore.Common.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.BaseModel
 {
     /// <summary>
     /// 返回状态码

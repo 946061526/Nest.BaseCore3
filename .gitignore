@@ -28,3 +28,7 @@
 /Nest.BaseCore/Nest.BaseCore.Api/*.user
 /Nest.BaseCore/Nest.BaseCore.Api/Log
 /Nest.BaseCore/Nest.BaseCore.ApiTest
+/Nest.BaseCore/Nest.BaseCore.BusinessLogic/bin
+/Nest.BaseCore/Nest.BaseCore.BusinessLogic/obj
+/Nest.BaseCore/Nest.BaseCore.Database/bin
+/Nest.BaseCore/Nest.BaseCore.Database/obj

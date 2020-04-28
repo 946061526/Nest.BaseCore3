@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Nest.BaseCore.Domain
+namespace Nest.BaseCore.Domain.Entity
 {
     /// <summary>
     /// 用户表

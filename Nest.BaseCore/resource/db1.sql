@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2020-01-03 16:52:12
+Date: 2020-04-24 15:47:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,7 +49,7 @@ CREATE TABLE `cap.published` (
   `ExpiresAt` datetime DEFAULT NULL,
   `StatusName` varchar(40) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cap.published
@@ -69,7 +69,7 @@ CREATE TABLE `cap.received` (
   `ExpiresAt` datetime DEFAULT NULL,
   `StatusName` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cap.received
@@ -124,6 +124,52 @@ CREATE TABLE `rolemenu` (
 
 -- ----------------------------
 -- Records of rolemenu
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tbstock
+-- ----------------------------
+DROP TABLE IF EXISTS `tbstock`;
+CREATE TABLE `tbstock` (
+  `storeHouse` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `goodsCode` varchar(255) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `price` varchar(100) DEFAULT NULL,
+  `stockNum` int(10) DEFAULT NULL,
+  `stockMoney` varchar(255) DEFAULT NULL,
+  `styleNo` varchar(50) DEFAULT NULL,
+  `asi` varchar(255) DEFAULT NULL,
+  `id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tbstock
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tbstockcheck
+-- ----------------------------
+DROP TABLE IF EXISTS `tbstockcheck`;
+CREATE TABLE `tbstockcheck` (
+  `code` varchar(100) DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `price` varchar(10) DEFAULT NULL,
+  `styleNo` varchar(255) DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `size` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `num` int(10) DEFAULT NULL,
+  `stockNum` int(10) DEFAULT NULL,
+  `goodsNo` varchar(100) DEFAULT NULL,
+  `asi` varchar(255) DEFAULT NULL,
+  `id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of tbstockcheck
 -- ----------------------------
 
 -- ----------------------------

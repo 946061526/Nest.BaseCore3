@@ -16,11 +16,11 @@ namespace Nest.BaseCore.Log
         /// </summary>
         /// <param name="source">来源</param>
         /// <param name="message">内容</param>
-        /// <param name="args">参数</param>
-        public void Debug(string source, string message, params string[] args)
+        /// <param name="tags">标签</param>
+        public void Debug(string source, string message, params string[] tags)
         {
-            if (args.Length > 0)
-                ExceptionlessClient.Default.CreateLog(message, LogLevel.Debug).AddTags(args).Submit();
+            if (tags.Length > 0)
+                ExceptionlessClient.Default.CreateLog(message, LogLevel.Debug).AddTags(tags).Submit();
             else
                 ExceptionlessClient.Default.SubmitLog(message, LogLevel.Debug);
         }
@@ -30,11 +30,11 @@ namespace Nest.BaseCore.Log
         /// </summary>
         /// <param name="source">来源</param>
         /// <param name="message">内容</param>
-        /// <param name="args">参数</param>
-        public void Error(string source, string message, params string[] args)
+        /// <param name="tags">标签</param>
+        public void Error(string source, string message, params string[] tags)
         {
-            if (args.Length > 0)
-                ExceptionlessClient.Default.CreateLog(message, LogLevel.Error).AddTags(args).Submit();
+            if (tags.Length > 0)
+                ExceptionlessClient.Default.CreateLog(message, LogLevel.Error).AddTags(tags).Submit();
             else
                 ExceptionlessClient.Default.SubmitLog(message, LogLevel.Error);
         }
@@ -44,11 +44,11 @@ namespace Nest.BaseCore.Log
         /// </summary>
         /// <param name="source">来源</param>
         /// <param name="message">内容</param>
-        /// <param name="args">参数</param>
-        public void Info(string source, string message, params string[] args)
+        /// <param name="tags">标签</param>
+        public void Info(string source, string message, params string[] tags)
         {
-            if (args.Length > 0)
-                ExceptionlessClient.Default.CreateLog(message, LogLevel.Info).AddTags(args).Submit();
+            if (tags.Length > 0)
+                ExceptionlessClient.Default.CreateLog(message, LogLevel.Info).AddTags(tags).Submit();
             else
                 ExceptionlessClient.Default.SubmitLog(message, LogLevel.Info);
         }

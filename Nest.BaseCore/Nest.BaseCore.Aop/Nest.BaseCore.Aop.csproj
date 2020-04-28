@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Common\Nest.BaseCore.Common.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Log\Nest.BaseCore.Log.csproj" />

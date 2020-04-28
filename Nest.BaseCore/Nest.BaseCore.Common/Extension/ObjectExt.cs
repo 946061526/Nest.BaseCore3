@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Nest.BaseCore.Common.BaseModel;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Extension
 {
     /// <summary>
     /// 对象扩展类

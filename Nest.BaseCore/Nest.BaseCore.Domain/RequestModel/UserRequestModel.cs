@@ -9,6 +9,11 @@ namespace Nest.BaseCore.Domain.RequestModel
     {
     }
 
+    public class AddUserRequestModel { }
+
+    public class EditUserRequestModel { }
+
+    public class QueryUserRequestModel { }
 
     /// <summary>
     /// 登录请求参数

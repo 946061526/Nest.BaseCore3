@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Enums
 {
     /// <summary>
     /// 客户端类型
@@ -23,7 +20,7 @@ namespace Nest.BaseCore.Common
         /// <summary>
         /// 微信小程序
         /// </summary>
-        [Description("MiniApp")]
+        [Description("小程序")]
         MiniApp = 3,
     }
 }

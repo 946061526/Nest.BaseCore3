@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
-namespace Nest.BaseCore.Common
+namespace Nest.BaseCore.Common.Enums
 {
     /// <summary>
     /// 菜单类型枚举 1模块/2功能/3操作

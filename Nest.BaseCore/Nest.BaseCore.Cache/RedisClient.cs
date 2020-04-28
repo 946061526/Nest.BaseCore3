@@ -247,17 +247,6 @@ namespace Nest.BaseCore.Cache
 
         #region 数据库操作
 
-        /// <summary>
-        /// 这里的 MergeKey 用来拼接 Key 的前缀，具体不同的业务模块使用不同的前缀。
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        //private static string MergeKey(string key)
-        //{
-        //    return key;
-        //    //return BaseSystemInfo.SystemCode + key;
-        //}
-
         ///// <summary>
         ///// 根据key保存缓存对象
         ///// </summary>
@@ -308,7 +297,6 @@ namespace Nest.BaseCore.Cache
         /// <param name="value"></param>
         public static async Task SetAsync<T>(IDatabase db, string key, T value)
         {
-            //key = MergeKey(key);
             var data = JsonConvert.SerializeObject(value);
             await db.StringSetAsync(key, data);
         }
@@ -320,7 +308,6 @@ namespace Nest.BaseCore.Cache
         /// <returns></returns>
         public static async Task<object> GetAsync(IDatabase db, string key)
         {
-            //key = MergeKey(key);
             object value = await db.StringGetAsync(key);
             return value;
         }
@@ -332,7 +319,6 @@ namespace Nest.BaseCore.Cache
         /// <returns></returns>
         public static long Increment(IDatabase db, string key, int value = 1)
         {
-            //key = MergeKey(key);
             //三种命令模式
             //Sync,同步模式会直接阻塞调用者，但是显然不会阻塞其他线程。
             //Async,异步模式直接走的是Task模型。
@@ -352,7 +338,6 @@ namespace Nest.BaseCore.Cache
         /// <returns></returns>
         public static long Decrement(IDatabase db, string key, int value = 1)
         {
-            //key = MergeKey(key);
             return db.StringDecrement(key, value, flags: CommandFlags.FireAndForget);
         }
 
@@ -363,7 +348,6 @@ namespace Nest.BaseCore.Cache
         /// <returns></returns>
         public static bool Exists(IDatabase db, string key)
         {
-            //key = MergeKey(key);
             return db.KeyExists(key); //可直接调用
         }
 
@@ -374,7 +358,6 @@ namespace Nest.BaseCore.Cache
         /// <returns></returns>
         public static bool Remove(IDatabase db, string key)
         {
-            //key = MergeKey(key);
             return db.KeyDelete(key);
         }
 
