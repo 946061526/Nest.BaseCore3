@@ -17,21 +17,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.基础设施层", "5.基�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.单元测试", "6.单元测试", "{9009466F-6043-4769-91E7-FD6D532F9152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Database", "Nest.BaseCore.Database\Nest.BaseCore.Database.csproj", "{FF5C64E2-7FC3-4438-85B2-F8F00FE9CA62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Database", "Nest.BaseCore.Database\Nest.BaseCore.Database.csproj", "{FF5C64E2-7FC3-4438-85B2-F8F00FE9CA62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Common", "Nest.BaseCore.Common\Nest.BaseCore.Common.csproj", "{BDF6C2EE-6EE8-4B84-8130-0C3A966B4F97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Common", "Nest.BaseCore.Common\Nest.BaseCore.Common.csproj", "{BDF6C2EE-6EE8-4B84-8130-0C3A966B4F97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Cache", "Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj", "{D4D2AC88-5800-4BF7-9314-EDFBAA336954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Cache", "Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj", "{D4D2AC88-5800-4BF7-9314-EDFBAA336954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Aop", "Nest.BaseCore.Aop\Nest.BaseCore.Aop.csproj", "{0206CB71-C86E-4854-8B3B-1293B9088BD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Aop", "Nest.BaseCore.Aop\Nest.BaseCore.Aop.csproj", "{0206CB71-C86E-4854-8B3B-1293B9088BD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Log", "Nest.BaseCore.Log\Nest.BaseCore.Log.csproj", "{50D638E1-5A6A-47D2-8B96-11FADE35174C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Log", "Nest.BaseCore.Log\Nest.BaseCore.Log.csproj", "{50D638E1-5A6A-47D2-8B96-11FADE35174C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Repository", "Nest.BaseCore.Repository\Nest.BaseCore.Repository.csproj", "{3155E4A6-F356-4276-B988-1C6271B954A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Repository", "Nest.BaseCore.Repository\Nest.BaseCore.Repository.csproj", "{3155E4A6-F356-4276-B988-1C6271B954A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.BusinessLogic", "Nest.BaseCore.BusinessLogic\Nest.BaseCore.BusinessLogic.csproj", "{E38DFD22-E1EB-4C9D-ADE5-0CF0F09D8C86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.BusinessLogic", "Nest.BaseCore.BusinessLogic\Nest.BaseCore.BusinessLogic.csproj", "{E38DFD22-E1EB-4C9D-ADE5-0CF0F09D8C86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Domain", "Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj", "{D0CEC342-6786-4FB0-9BAB-47F70C963335}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Domain", "Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj", "{D0CEC342-6786-4FB0-9BAB-47F70C963335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Api", "Nest.BaseCore.Api\Nest.BaseCore.Api.csproj", "{938B9051-570F-4653-9C30-765518B6AC52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Web", "Nest.BaseCore.Web\Nest.BaseCore.Web.csproj", "{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,14 @@ Global
 		{D0CEC342-6786-4FB0-9BAB-47F70C963335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0CEC342-6786-4FB0-9BAB-47F70C963335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0CEC342-6786-4FB0-9BAB-47F70C963335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{938B9051-570F-4653-9C30-765518B6AC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938B9051-570F-4653-9C30-765518B6AC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938B9051-570F-4653-9C30-765518B6AC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938B9051-570F-4653-9C30-765518B6AC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +96,8 @@ Global
 		{3155E4A6-F356-4276-B988-1C6271B954A3} = {F9D657AC-941F-430B-AAA7-0E0B57E00FE4}
 		{E38DFD22-E1EB-4C9D-ADE5-0CF0F09D8C86} = {E0666F10-2664-46D6-9F81-A7096807A0F1}
 		{D0CEC342-6786-4FB0-9BAB-47F70C963335} = {A69D4B5E-4C4E-4DC8-A5DE-E058DD51A717}
+		{938B9051-570F-4653-9C30-765518B6AC52} = {456E39EC-A4AD-4B40-8F4D-33246B46F929}
+		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF} = {456E39EC-A4AD-4B40-8F4D-33246B46F929}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AAFCE9DE-4A00-442F-BF06-5E94E43D8FEB}

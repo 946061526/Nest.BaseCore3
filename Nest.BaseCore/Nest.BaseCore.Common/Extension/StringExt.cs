@@ -76,7 +76,7 @@ namespace Nest.BaseCore.Common.Extension
         /// <param name="input"></param>
         /// <param name="defaultImageEnum">默认图片类型，默认使用默认图</param>
         /// <returns></returns>
-        public static string ToImageUrl(this string input, DefaultImageEnum defaultImageEnum = DefaultImageEnum.DefaultImage)
+        public static string ToFullImageUrl(this string input, DefaultImageEnum defaultImageEnum = DefaultImageEnum.DefaultImage)
         {
             var imgSaveService = AppSettingsHelper.Configuration["ImageUploadConfig:UploadService"];
             if (string.IsNullOrEmpty(input))//输入url为空
@@ -96,6 +96,21 @@ namespace Nest.BaseCore.Common.Extension
                 return input;
             }
             return $"{imgSaveService}/{input.Replace('\\', '/')}";
+        }
+
+        /// <summary>
+        /// 将图片全路径转换为短路径（存入数据库的路径）
+        /// </summary>
+        /// <param name="fullImgUrl"></param>
+        /// <returns></returns>
+        public static string ToShortImageUrl(this string fullImgUrl)
+        {
+            if (string.IsNullOrEmpty(fullImgUrl) || !fullImgUrl.Contains("http"))
+            {
+                return fullImgUrl;
+            }
+            var imgSaveService = AppSettingsHelper.Configuration["ImageUploadConfig:SaveService"];
+            return fullImgUrl.Replace($"{imgSaveService}/", "");
         }
 
 

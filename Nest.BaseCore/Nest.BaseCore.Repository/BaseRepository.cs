@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nest.BaseCore.Common;
 using Nest.BaseCore.Common.Extension;
 using Nest.BaseCore.Domain;
 using System;
@@ -341,129 +342,129 @@ namespace Nest.BaseCore.Repository
         //    //return ExecuteQuery<TEntity>(procName, CommandType.StoredProcedure, parameters);
         //    return SqlQuery<TEntity>(procName, CommandType.StoredProcedure, parameters);
         //}
-        /// <summary>
-        /// 批量新增
-        /// </summary>
-        /// <typeparam name="TEntity">泛型集合的类型</typeparam>
-        /// <param name="tableName">表名</param>
-        /// <param name="list">数据集合</param>
-        public void BulkInsert<TEntity>(IList<TEntity> list, string tableName = "")
-        {
-            if (list == null || !list.Any())
-                return;
-            if (string.IsNullOrEmpty(tableName))
-            {
-                Type t = typeof(TEntity);
-                tableName = t.Name;
-            }
-            //var connection = _db.Database.GetDbConnection().ConnectionString;
-            //using (var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.Default))
-            //{
-            //    bulkCopy.BatchSize = list.Count;
-            //    bulkCopy.DestinationTableName = tableName;
-
-            //    var table = new DataTable();
-            //    var props = TypeDescriptor.GetProperties(typeof(TEntity))
-            //        .Cast<PropertyDescriptor>()
-            //        .Where(propertyInfo => propertyInfo.PropertyType.Namespace.Equals("System"))
-            //        .ToArray();
-
-            //    foreach (var propertyInfo in props)
-            //    {
-            //        bulkCopy.ColumnMappings.Add(propertyInfo.Name, propertyInfo.Name);
-            //        table.Columns.Add(propertyInfo.Name, Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType);
-            //    }
-
-            //    var values = new object[props.Length];
-            //    foreach (var item in list)
-            //    {
-            //        for (var i = 0; i < values.Length; i++)
-            //        {
-            //            values[i] = props[i].GetValue(item);
-            //        }
-
-            //        table.Rows.Add(values);
-            //    }
-
-            //    bulkCopy.WriteToServer(table);
-            //}
-        }
-
         ///// <summary>
-        ///// 使用SqlBulkCopy批量拷贝数据（一般使用在大量数据写入，例如：一次写入1000条）
+        ///// 批量新增
         ///// </summary>
-        ///// <param name="entitys"></param>
-        //public void BulkInsertCopyAll(IEnumerable<TEntity> entitys)
+        ///// <typeparam name="TEntity">泛型集合的类型</typeparam>
+        ///// <param name="tableName">表名</param>
+        ///// <param name="list">数据集合</param>
+        //public void BulkInsert<TEntity>(IList<TEntity> list, string tableName = "")
         //{
-        //    if (entitys == null || entitys.Count() == 0)
-        //    {
+        //    if (list == null || !list.Any())
         //        return;
-        //    }
-        //    entitys = entitys.ToArray();
-
-        //    string cs = UnitOfWork.context.Database.Connection.ConnectionString;
-        //    using (var conn = new SqlConnection(cs))
+        //    if (string.IsNullOrEmpty(tableName))
         //    {
-
         //        Type t = typeof(TEntity);
+        //        tableName = t.Name;
+        //    }
+        //    var connection = _db.Database.GetDbConnection().ConnectionString;
+        //    using (var bulkCopy = new SqlBulkCopy(connection, SqlBulkCopyOptions.Default))
+        //    {
+        //        bulkCopy.BatchSize = list.Count;
+        //        bulkCopy.DestinationTableName = tableName;
 
-        //        using (var bulkCopy = new SqlBulkCopy(conn)
+        //        var table = new DataTable();
+        //        var props = TypeDescriptor.GetProperties(typeof(TEntity))
+        //            .Cast<PropertyDescriptor>()
+        //            .Where(propertyInfo => propertyInfo.PropertyType.Namespace.Equals("System"))
+        //            .ToArray();
+
+        //        foreach (var propertyInfo in props)
         //        {
-        //            DestinationTableName = t.Name
-        //        })
-        //        {
-
-        //            var properties = t.GetProperties().Where(EventTypeFilter).ToArray();
-        //            var table = new DataTable();
-
-        //            foreach (var property in properties)
-        //            {
-        //                Type propertyType = property.PropertyType;
-        //                if (propertyType.IsGenericType &&
-        //                    propertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-        //                {
-        //                    propertyType = Nullable.GetUnderlyingType(propertyType);
-        //                }
-        //                table.Columns.Add(new DataColumn(property.Name, propertyType));
-        //            }
-        //            foreach (var entity in entitys)
-        //            {
-        //                table.Rows.Add(properties.Select(
-        //                  property => GetPropertyValue(
-        //                  property.GetValue(entity, null))).ToArray());
-        //            }
-
-        //            conn.Open();
-        //            bulkCopy.WriteToServer(table);
+        //            bulkCopy.ColumnMappings.Add(propertyInfo.Name, propertyInfo.Name);
+        //            table.Columns.Add(propertyInfo.Name, Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType);
         //        }
+
+        //        var values = new object[props.Length];
+        //        foreach (var item in list)
+        //        {
+        //            for (var i = 0; i < values.Length; i++)
+        //            {
+        //                values[i] = props[i].GetValue(item);
+        //            }
+
+        //            table.Rows.Add(values);
+        //        }
+
+        //        bulkCopy.WriteToServer(table);
         //    }
         //}
-        //private bool EventTypeFilter(System.Reflection.PropertyInfo p)
-        //{
-        //    var keyAttribute = Attribute.GetCustomAttribute(p,
-        //        typeof(KeyAttribute)) as KeyAttribute;
-        //    if (keyAttribute == null) return true;
 
-        //    var generatedAttribute = Attribute.GetCustomAttribute(p,
-        //      typeof(DatabaseGeneratedAttribute)) as DatabaseGeneratedAttribute;
-        //    if (generatedAttribute == null) return true;
-        //    if (generatedAttribute.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity) return true;
+        /////// <summary>
+        /////// 使用SqlBulkCopy批量拷贝数据（一般使用在大量数据写入，例如：一次写入1000条）
+        /////// </summary>
+        /////// <param name="entitys"></param>
+        ////public void BulkInsertCopyAll(IEnumerable<TEntity> entitys)
+        ////{
+        ////    if (entitys == null || entitys.Count() == 0)
+        ////    {
+        ////        return;
+        ////    }
+        ////    entitys = entitys.ToArray();
+
+        ////    string cs = UnitOfWork.context.Database.Connection.ConnectionString;
+        ////    using (var conn = new SqlConnection(cs))
+        ////    {
+
+        ////        Type t = typeof(TEntity);
+
+        ////        using (var bulkCopy = new SqlBulkCopy(conn)
+        ////        {
+        ////            DestinationTableName = t.Name
+        ////        })
+        ////        {
+
+        ////            var properties = t.GetProperties().Where(EventTypeFilter).ToArray();
+        ////            var table = new DataTable();
+
+        ////            foreach (var property in properties)
+        ////            {
+        ////                Type propertyType = property.PropertyType;
+        ////                if (propertyType.IsGenericType &&
+        ////                    propertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+        ////                {
+        ////                    propertyType = Nullable.GetUnderlyingType(propertyType);
+        ////                }
+        ////                table.Columns.Add(new DataColumn(property.Name, propertyType));
+        ////            }
+        ////            foreach (var entity in entitys)
+        ////            {
+        ////                table.Rows.Add(properties.Select(
+        ////                  property => GetPropertyValue(
+        ////                  property.GetValue(entity, null))).ToArray());
+        ////            }
+
+        ////            conn.Open();
+        ////            bulkCopy.WriteToServer(table);
+        ////        }
+        ////    }
+        ////}
+        ////private bool EventTypeFilter(System.Reflection.PropertyInfo p)
+        ////{
+        ////    var keyAttribute = Attribute.GetCustomAttribute(p,
+        ////        typeof(KeyAttribute)) as KeyAttribute;
+        ////    if (keyAttribute == null) return true;
+
+        ////    var generatedAttribute = Attribute.GetCustomAttribute(p,
+        ////      typeof(DatabaseGeneratedAttribute)) as DatabaseGeneratedAttribute;
+        ////    if (generatedAttribute == null) return true;
+        ////    if (generatedAttribute.DatabaseGeneratedOption != DatabaseGeneratedOption.Identity) return true;
 
 
-        //    if (!(Attribute.GetCustomAttribute(p,
-        //        typeof(AssociationAttribute)) is AssociationAttribute attribute)) return true;
+        ////    if (!(Attribute.GetCustomAttribute(p,
+        ////        typeof(AssociationAttribute)) is AssociationAttribute attribute)) return true;
 
-        //    if (attribute.IsForeignKey == false) return true;
+        ////    if (attribute.IsForeignKey == false) return true;
 
-        //    return false;
-        //}
+        ////    return false;
+        ////}
 
-        //private object GetPropertyValue(object o)
-        //{
-        //    if (o == null)
-        //        return DBNull.Value;
-        //    return o;
-        //}
+        ////private object GetPropertyValue(object o)
+        ////{
+        ////    if (o == null)
+        ////        return DBNull.Value;
+        ////    return o;
+        ////}
 
 
         //private int ExecuteNonQuery(string sql, CommandType cmdType = CommandType.Text, params object[] parameters)
@@ -561,4 +562,3 @@ namespace Nest.BaseCore.Repository
         }
     }
 }
-
