@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotNetCore.CAP;
+using Microsoft.AspNetCore.Mvc;
 using Nest.BaseCore.Aop;
 using Nest.BaseCore.BusinessLogic.IService;
 using Nest.BaseCore.Common.BaseModel;
@@ -6,7 +7,9 @@ using Nest.BaseCore.Domain.Entity;
 using Nest.BaseCore.Domain.RequestModel;
 using Nest.BaseCore.Domain.ResponseModel;
 using Nest.BaseCore.Log;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Nest.BaseCore.Api.Controllers
 {
@@ -19,10 +22,13 @@ namespace Nest.BaseCore.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly ICapPublisher _publisher;
         public IExceptionlessLogger _Log { get; }
         private readonly IUserService _userService;
-        public UserController(IExceptionlessLogger log, IUserService userService)
+
+        public UserController(ICapPublisher publisher, IExceptionlessLogger log, IUserService userService)
         {
+            _publisher = publisher;
             _Log = log;
             _userService = userService;
         }
@@ -80,6 +86,47 @@ namespace Nest.BaseCore.Api.Controllers
         public void Delete()
         {
             _userService.Delete();
+        }
+
+        //[HttpPost]
+        //[Route("Publish")]
+        //public async Task Publish()
+        //{
+        //    try
+        //    {
+        //        await _publisher.PublishAsync<string>("cap.user.queue", "test");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //}
+        [HttpPost]
+        [Route("Publish")]
+        public void Publish()
+        {
+            try
+            {
+                _publisher.Publish("cap.user.queue", "test");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        [NonAction]
+        [CapSubscribe("cap.user.queue", Group = "g1")]
+        public void DataSubscribe(string message)
+        {
+            try
+            {
+                Console.WriteLine(message);
+            }
+            catch (Exception ex)
+            {
+                _Log.Error("", ex.Message, "");
+            }
+
         }
     }
 }

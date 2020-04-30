@@ -19,7 +19,7 @@ namespace Nest.BaseCore.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)                
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())////将默认ServiceProviderFactory指定为AutofacServiceProviderFactory
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory()) //将默认ServiceProviderFactory指定为AutofacServiceProviderFactory
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

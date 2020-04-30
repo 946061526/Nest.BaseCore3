@@ -1,4 +1,5 @@
 using Autofac;
+using Exceptionless;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Nest.BaseCore.Aop;
+using Nest.BaseCore.Common;
 using Nest.BaseCore.Domain;
 using Nest.BaseCore.Log;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -22,9 +24,6 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Http;
 using IOperationFilter = Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter;
-using DotNetCore.CAP;
-using Microsoft.AspNetCore.Builder;
-using Exceptionless;
 
 namespace Nest.BaseCore.Api
 {
@@ -40,6 +39,45 @@ namespace Nest.BaseCore.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //数据库
+            var mySqlConn = Configuration.GetConnectionString("MySQL");
+            services.AddDbContext<MainContext>(options => options.UseMySql(mySqlConn));
+
+            //配置CAP
+            services.AddCap(cap =>
+            {
+                cap.UseEntityFramework<MainContext>();
+
+                //cap.UseMySql(mySqlConn);
+                //cap.UseRabbitMQ("localhost");
+
+                //使用RabbitMQ
+                cap.UseRabbitMQ(rb =>
+                {
+                    //rabbitmq服务器配置                   
+                    rb.HostName = AppSettingsHelper.Configuration["MQConfig:Host"];
+                    rb.Port = int.Parse(AppSettingsHelper.Configuration["MQConfig:Port"]);
+                    rb.UserName = AppSettingsHelper.Configuration["MQConfig:UserName"];
+                    rb.Password = AppSettingsHelper.Configuration["MQConfig:Password"];
+                });
+
+                //设置处理成功的数据在数据库中保存的时间（秒），为保证系统新能，数据会定期清理。
+                cap.SucceedMessageExpiredAfter = 24 * 3600;
+
+                //设置失败重试次数
+                cap.FailedRetryCount = 5;
+            });
+
+            #region 日志服务
+            //初始化Net4Log
+            ILoggerRepository repository = LogManager.CreateRepository("Net4LoggerRepository");
+            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//从log4net.config文件中读取配置信息
+
+            //注入Logger服务
+            services.AddSingleton<IExceptionlessLogger, ExceptionlessLogger>();
+
+            #endregion
+
             #region Swagger
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -70,47 +108,10 @@ namespace Nest.BaseCore.Api
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
 
 
-            var mySqlConn = Configuration.GetConnectionString("MySQL");
-            services.AddDbContext<MainContext>(options => options.UseMySQL(mySqlConn));
-
-            //配置CAP
-            services.AddCap(cap =>
-            {
-                //cap.UseEntityFramework<MainContext>();
-
-                cap.UseMySql(mySqlConn);
-
-                //使用RabbitMQ
-                cap.UseRabbitMQ(rb =>
-                {
-                    //rabbitmq服务器配置
-                    rb.HostName = "192.168.1.221";
-                    rb.UserName = "guest";
-                    rb.Password = "guest";
-                });
-
-                //设置处理成功的数据在数据库中保存的时间（秒），为保证系统新能，数据会定期清理。
-                cap.SucceedMessageExpiredAfter = 24 * 3600;
-
-                //设置失败重试次数
-                cap.FailedRetryCount = 5;
-            });
-
-
             services.AddMvc(options =>
             {
                 options.Filters.Add<GlobalExceptionAttribute>();//统一异常处理
             }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
-            #region 日志服务
-            //初始化Net4Log
-            ILoggerRepository repository = LogManager.CreateRepository("Net4LoggerRepository");
-            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//从log4net.config文件中读取配置信息
-
-            //注入Logger服务
-            services.AddSingleton<IExceptionlessLogger, ExceptionlessLogger>();
-
-            #endregion
 
             ////注入逻辑层服务
             //services.AddScoped<IUserService, UserService>()
@@ -121,7 +122,7 @@ namespace Nest.BaseCore.Api
         }
 
         /// <summary>
-        /// 依赖注入
+        /// autofac注入
         /// </summary>
         /// <param name="builder"></param>
         public void ConfigureContainer(ContainerBuilder builder)
@@ -149,6 +150,11 @@ namespace Nest.BaseCore.Api
 
             // exceptionless
             app.UseExceptionless(Configuration["Exceptionless:ApiKey"]);
+
+
+            //注入HttpContex
+            //Nest.BaseCore.Common.HttpContext.Configure(app.ApplicationServices.GetRequiredService<Microsoft.AspNetCore.Http.IHttpContextAccessor>());
+
 
             if (env.IsDevelopment())
             {
