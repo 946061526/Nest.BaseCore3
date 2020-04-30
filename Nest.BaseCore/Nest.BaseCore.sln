@@ -33,9 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.BusinessLogic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Domain", "Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj", "{D0CEC342-6786-4FB0-9BAB-47F70C963335}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Api", "Nest.BaseCore.Api\Nest.BaseCore.Api.csproj", "{938B9051-570F-4653-9C30-765518B6AC52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Api", "Nest.BaseCore.Api\Nest.BaseCore.Api.csproj", "{938B9051-570F-4653-9C30-765518B6AC52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Web", "Nest.BaseCore.Web\Nest.BaseCore.Web.csproj", "{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Web", "Nest.BaseCore.Web\Nest.BaseCore.Web.csproj", "{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{D0CEC342-6786-4FB0-9BAB-47F70C963335} = {A69D4B5E-4C4E-4DC8-A5DE-E058DD51A717}
 		{938B9051-570F-4653-9C30-765518B6AC52} = {456E39EC-A4AD-4B40-8F4D-33246B46F929}
 		{A9B25561-2163-4CF1-AAFB-B22DCEB412EF} = {456E39EC-A4AD-4B40-8F4D-33246B46F929}
+		{BB92EB45-42CF-42EE-8F2D-C61C098D59CD} = {9009466F-6043-4769-91E7-FD6D532F9152}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AAFCE9DE-4A00-442F-BF06-5E94E43D8FEB}
