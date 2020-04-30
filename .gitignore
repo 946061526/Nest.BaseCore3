@@ -34,3 +34,9 @@
 /Nest.BaseCore/Nest.BaseCore.Database/obj
 /Nest.BaseCore/UnitTestProject1/bin
 /Nest.BaseCore/UnitTestProject1/obj
+/Nest.BaseCore/Nest.BaseCore.SecondApi/obj
+/Nest.BaseCore/Nest.BaseCore.SecondApi/bin
+/Nest.BaseCore/Nest.BaseCore.FirstApi/obj
+/Nest.BaseCore/Nest.BaseCore.FirstApi/bin
+/Nest.BaseCore/Nest.BaseCore.Gateway/obj
+/Nest.BaseCore/Nest.BaseCore.Gateway/bin

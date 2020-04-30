@@ -22,6 +22,7 @@ namespace Nest.BaseCore.Api
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory()) //将默认ServiceProviderFactory指定为AutofacServiceProviderFactory
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("http://localhost:5001");
                     webBuilder.UseStartup<Startup>();
                 });
     }

@@ -1,0 +1,74 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:4000"
+  },
+  "ReRoutes": [
+    // API:first
+    {
+      "DownstreamPathTemplate": "/api/first/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "4001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/first/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+    // API:second
+    {
+      "DownstreamPathTemplate": "/api/second/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "4002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/second/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    }
+  ]
+}
+
+
+//{
+//  "ReRoutes": [
+//    {
+//      "DownstreamPathTemplate": "/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 9345
+//        },
+//        {
+//          "Host": "localhost",
+//          "Port": 9234
+//        }
+//      ],
+//      //"ServiceName": "user", //consul中的userapi的service名称
+//      //"LoadBalancer": "RoundRobin", //负载均衡算法
+//      //"UseServiceDiscovery": true, //启用服务发现
+//      "UpstreamPathTemplate": "/{everything}",
+//      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+//      //"AuthenticationOptions": {
+//      //  "AuthenticationProviderKey": "qka_api",
+//      //  "AllowedScopes": []
+//      //},
+//      //缓存
+//      "FileCacheOptions": {
+//        "TtlSeconds": 30, //缓存时间（秒）
+//        "Region": "CacheArea" //缓存区（名称自定义），表示改配置缓存放到哪个区域，可以在配置管理中进行维护
+//      }
+//    }
+//  ],
+//  "GlobalConfiguration": {
+//    "BaseUrl": "http://localhost:5000"
+//    //"ServiceDiscoveryProvider": {
+//    //  "Host": "192.168.2.144", //consul的地址
+//    //  "Port": 8500 //consul的端口
+//    //}
+//  }
+//}
