@@ -11,14 +11,17 @@ using System.Threading.Tasks;
 
 namespace Nest.BaseCore.Gateway
 {
-    public class AuthenticationMiddleware : OcelotMiddleware
+    /// <summary>
+    /// 签名验证中间件
+    /// </summary>
+    public class SignatureValidatorMiddleware: OcelotMiddleware
     {
         private readonly IConfiguration _configuration;
         private readonly IMemoryCache _memoryCache;
         private readonly OcelotRequestDelegate _next;
 
-        public AuthenticationMiddleware(OcelotRequestDelegate next, IConfiguration configuration, IMemoryCache memoryCache, IOcelotLoggerFactory loggerFactory) 
-            : base(loggerFactory.CreateLogger<AuthenticationMiddleware>())
+        public SignatureValidatorMiddleware(OcelotRequestDelegate next, IConfiguration configuration, IMemoryCache memoryCache, IOcelotLoggerFactory loggerFactory)
+            : base(loggerFactory.CreateLogger<SignatureValidatorMiddleware>())
         {
             _next = next;
             _configuration = configuration;
