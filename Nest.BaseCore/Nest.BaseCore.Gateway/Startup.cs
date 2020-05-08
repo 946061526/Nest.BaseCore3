@@ -33,7 +33,19 @@ namespace Nest.BaseCore.Gateway
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseOcelot().Wait();
+            //app.UseOcelot().Wait();
+
+            app.UseOcelot((builder, config) =>
+            {
+
+                //builder.BuildCustomOcelotPipeline(config)
+
+                //.UseMiddleware<ThemeCssMinUrlReplacer>()
+
+                //.Build();
+
+               // builder.BuildOcelotPipeline(config).UseMiddleware<SignatureValidatorMiddleware>().Build();
+            });
 
             if (env.IsDevelopment())
             {
