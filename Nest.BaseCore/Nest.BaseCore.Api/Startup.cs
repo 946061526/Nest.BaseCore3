@@ -13,15 +13,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Nest.BaseCore.Aop;
+using Nest.BaseCore.BusinessLogic.IService;
+using Nest.BaseCore.BusinessLogic.Service;
 using Nest.BaseCore.Common;
 using Nest.BaseCore.Domain;
 using Nest.BaseCore.Log;
+using Nest.BaseCore.NLogger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Web.Http;
 using IOperationFilter = Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter;
 
@@ -40,41 +44,41 @@ namespace Nest.BaseCore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             //数据库
-            var mySqlConn = Configuration.GetConnectionString("MySQL");
-            services.AddDbContext<MainContext>(options => options.UseMySql(mySqlConn));
+            //var mySqlConn = Configuration.GetConnectionString("MySQL");
+            //services.AddDbContext<MainContext>(options => options.UseMySql(mySqlConn));
 
-            //配置CAP
-            services.AddCap(cap =>
-            {
-                cap.UseEntityFramework<MainContext>();
+            ////配置CAP
+            //services.AddCap(cap =>
+            //{
+            //    cap.UseEntityFramework<MainContext>();
 
-                //cap.UseMySql(mySqlConn);
-                //cap.UseRabbitMQ("localhost");
+            //    //cap.UseMySql(mySqlConn);
+            //    //cap.UseRabbitMQ("localhost");
 
-                //使用RabbitMQ
-                cap.UseRabbitMQ(rb =>
-                {
-                    //rabbitmq服务器配置                   
-                    rb.HostName = AppSettingsHelper.Configuration["MQConfig:Host"];
-                    rb.Port = int.Parse(AppSettingsHelper.Configuration["MQConfig:Port"]);
-                    rb.UserName = AppSettingsHelper.Configuration["MQConfig:UserName"];
-                    rb.Password = AppSettingsHelper.Configuration["MQConfig:Password"];
-                });
+            //    //使用RabbitMQ
+            //    cap.UseRabbitMQ(rb =>
+            //    {
+            //        //rabbitmq服务器配置                   
+            //        rb.HostName = AppSettingsHelper.Configuration["MQConfig:Host"];
+            //        rb.Port = int.Parse(AppSettingsHelper.Configuration["MQConfig:Port"]);
+            //        rb.UserName = AppSettingsHelper.Configuration["MQConfig:UserName"];
+            //        rb.Password = AppSettingsHelper.Configuration["MQConfig:Password"];
+            //    });
 
-                //设置处理成功的数据在数据库中保存的时间（秒），为保证系统新能，数据会定期清理。
-                cap.SucceedMessageExpiredAfter = 24 * 3600;
+            //    //设置处理成功的数据在数据库中保存的时间（秒），为保证系统新能，数据会定期清理。
+            //    cap.SucceedMessageExpiredAfter = 24 * 3600;
 
-                //设置失败重试次数
-                cap.FailedRetryCount = 5;
-            });
+            //    //设置失败重试次数
+            //    cap.FailedRetryCount = 5;
+            //});
 
             #region 日志服务
-            //初始化Net4Log
-            ILoggerRepository repository = LogManager.CreateRepository("Net4LoggerRepository");
-            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//从log4net.config文件中读取配置信息
+            ////初始化Net4Log
+            //ILoggerRepository repository = LogManager.CreateRepository("Net4LoggerRepository");
+            //XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//从log4net.config文件中读取配置信息
 
-            //注入Logger服务
-            services.AddSingleton<IExceptionlessLogger, ExceptionlessLogger>();
+            ////注入Logger服务
+            //services.AddSingleton<IExceptionlessLogger, ExceptionlessLogger>();
 
             #endregion
 
@@ -108,14 +112,25 @@ namespace Nest.BaseCore.Api
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
 
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<GlobalExceptionAttribute>();//统一异常处理
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add<GlobalExceptionAttribute>();//统一异常处理
+            //}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             ////注入逻辑层服务
             //services.AddScoped<IUserService, UserService>()
             //    .AddScoped<IRoleService, RoleService>();
+
+            services.AddSingleton<Nest.BaseCore.NLogger.INLogger, Nest.BaseCore.NLogger.NLogger>()
+                .AddScoped<INLogService, NLogService>();
+
+            //Dapper相关注入
+            #region Dapper相关注入
+
+            //services.Configure<DapperDbOption>(Configuration.GetSection("DapperDbOpion"));//数据库连接配置
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();//工作单元注入
+            //services.AddScoped<ILogInfoRepository, TCT.Net.DDD.RepositoryDapper.Repository.LogInfoRepository>();//对应仓储注入
+            #endregion
 
             services.AddControllers();
 
@@ -138,6 +153,14 @@ namespace Nest.BaseCore.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            #region Nlog记日志
+
+            NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
+            NLog.LogManager.Configuration.Variables["connectionString"] = Configuration.GetConnectionString("Default");
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);  //避免日志中的中文输出乱码
+            #endregion
+
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

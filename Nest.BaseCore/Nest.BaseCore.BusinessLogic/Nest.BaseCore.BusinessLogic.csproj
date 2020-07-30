@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IService\" />
-    <Folder Include="Service\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
   </ItemGroup>
 
@@ -17,6 +12,7 @@
     <ProjectReference Include="..\Nest.BaseCore.Cache\Nest.BaseCore.Cache.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Common\Nest.BaseCore.Common.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.NLog\Nest.BaseCore.NLogger.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Repository\Nest.BaseCore.Repository.csproj" />
   </ItemGroup>
 

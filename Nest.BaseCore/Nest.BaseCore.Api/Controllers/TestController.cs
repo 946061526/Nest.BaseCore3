@@ -19,15 +19,23 @@ namespace Nest.BaseCore.Api.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        public IExceptionlessLogger _Log { get; }
-        private readonly IUserService _userService;
-        private readonly ICapPublisher _publisher;
+        //public IExceptionlessLogger _Log { get; }
+        // private readonly IUserService _userService;
+        //private readonly ICapPublisher _publisher;
 
-        public TestController(IExceptionlessLogger log, IUserService userService, ICapPublisher publisher)
+        private readonly INLogService _nLogService;
+
+        //public TestController(IExceptionlessLogger log, ICapPublisher publisher, INLogService nLogService)
+        //{
+        //    _Log = log;
+        //    //  _userService = userService;
+        //    _publisher = publisher;
+        //    _nLogService = nLogService;
+        //}
+
+        public TestController(INLogService nLogService)
         {
-            _Log = log;
-            _userService = userService;
-            _publisher = publisher;
+            _nLogService = nLogService;
         }
 
         /// <summary>
@@ -37,9 +45,27 @@ namespace Nest.BaseCore.Api.Controllers
         [Route("TestLog")]
         public ApiResultModel<string> TestLog()
         {
-            Net4Logger.Debug("debug", "阿萨德法师法方为人阿萨德法师法方为人阿萨德法师法方为人", new Exception("debug"));
-            Net4Logger.Error("error", "asfsafdsfasfdsf阿萨德法师法方为人阿萨德法师法方为人阿萨德法师法方为人", new Exception("error"));
-            Net4Logger.Info("info", "1q324154354325654阿萨德法师法方为人阿萨德法师法方为人阿萨德法师法方为人", new Exception("info"));
+            //Net4Logger.Debug("debug", "阿萨德法师法方为人阿萨德法师法方为人阿萨德法师法方为人", new Exception("debug"));
+            //Net4Logger.Error("error", "asfsafdsfasfdsf阿萨德法师法方为人阿萨德法师法方为人阿萨德法师法方为人", new Exception("error"));
+            //Net4Logger.Info("info", "1q324154354325654阿萨德法师法方为人阿萨德法师法方为人阿萨德法师法方为人", new Exception("info"));
+
+
+            //nLog
+
+            _nLogService.DebugToFile("test ", "测试一下DebugToFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            _nLogService.InfoToFile("test ", "测试一下InfoToFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            _nLogService.ErrorToFile(new Exception("异常信息ErrorToFile"), "test ", "测试一下ErrorToFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            _nLogService.FatalToFile(new Exception("异常信息FatalToFile"), "test ", "测试一下FatalToFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+
+            //_nLogService.DebugToDB("test ", "测试一下DebugToDB", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            //_nLogService.InfoToDB("test ", "测试一下InfoToDB","sty","sname","modu","func","uad","inp","sd");
+            //_nLogService.ErrorToDB(new Exception("异常信息ErrorToDB"), "test ", "测试一下ErrorToDB", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            //_nLogService.FatalToDB(new Exception("异常信息FatalToDB"), "test ", "测试一下FatalToDB", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+
+            //_nLogService.DebugToDbAndFile("test ", "测试一下DebugToDbAndFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            //_nLogService.InfoToDbAndFile("test ", "测试一下InfoToDbAndFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            //_nLogService.ErrorToDbAndFile(new Exception("异常信息ErrorToDbAndFile"), "test ", "测试一下ErrorToDbAndFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
+            //_nLogService.FatalToDbAndFile(new Exception("异常信息FatalToDbAndFile"), "test ", "测试一下FatalToDbAndFile", "sty", "sname", "modu", "func", "uad", "inp", "sd");
 
             return new ApiResultModel<string>();
         }
@@ -355,7 +381,7 @@ namespace Nest.BaseCore.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [InnerService]
-        public Dictionary<string, object> TestSign([FromBody]Dictionary<string, object> paramModel, string appKey = "6424cb5a2d99e2128d234f7cf3527c7d", bool isGetTimestamp = true, bool isShowParamStr = false)
+        public Dictionary<string, object> TestSign([FromBody] Dictionary<string, object> paramModel, string appKey = "6424cb5a2d99e2128d234f7cf3527c7d", bool isGetTimestamp = true, bool isShowParamStr = false)
         {
             Dictionary<string, object> dirPre = paramModel;//待签名字典
             if (isGetTimestamp)
@@ -410,7 +436,7 @@ namespace Nest.BaseCore.Api.Controllers
         [HttpGet]
         public string SendMq(string message)
         {
-            _publisher.Publish(CapTestQueue, message);
+            //_publisher.Publish(CapTestQueue, message);
 
             return "发送成功";
         }

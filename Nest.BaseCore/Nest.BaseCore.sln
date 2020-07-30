@@ -37,13 +37,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Api", "Nest.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Web", "Nest.BaseCore.Web\Nest.BaseCore.Web.csproj", "{A9B25561-2163-4CF1-AAFB-B22DCEB412EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{BB92EB45-42CF-42EE-8F2D-C61C098D59CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Gateway", "Nest.BaseCore.Gateway\Nest.BaseCore.Gateway.csproj", "{35FE47D0-2D63-4810-BEB3-AC06C407D615}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.Gateway", "Nest.BaseCore.Gateway\Nest.BaseCore.Gateway.csproj", "{35FE47D0-2D63-4810-BEB3-AC06C407D615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.FirstApi", "Nest.BaseCore.FirstApi\Nest.BaseCore.FirstApi.csproj", "{DCE6D258-F2D2-4C3C-BB0A-97EED9DFAD11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.FirstApi", "Nest.BaseCore.FirstApi\Nest.BaseCore.FirstApi.csproj", "{DCE6D258-F2D2-4C3C-BB0A-97EED9DFAD11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.SecondApi", "Nest.BaseCore.SecondApi\Nest.BaseCore.SecondApi.csproj", "{7F712262-D52B-4ABF-854A-9B8FB4B53699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.SecondApi", "Nest.BaseCore.SecondApi\Nest.BaseCore.SecondApi.csproj", "{7F712262-D52B-4ABF-854A-9B8FB4B53699}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nest.BaseCore.NLogger", "Nest.BaseCore.NLog\Nest.BaseCore.NLogger.csproj", "{EAD71000-48B4-4911-A4E3-8345C8F7591F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.Dapper", "Nest.BaseCore.Dapper\Nest.BaseCore.Dapper.csproj", "{B468BF14-2F1D-4CC3-B224-7A004883AA28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.BaseCore.RepositoryDapper", "Nest.BaseCore.RepositoryDapper\Nest.BaseCore.RepositoryDapper.csproj", "{B73E7ED2-D660-4729-AB72-3562748D4F64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +113,18 @@ Global
 		{7F712262-D52B-4ABF-854A-9B8FB4B53699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F712262-D52B-4ABF-854A-9B8FB4B53699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F712262-D52B-4ABF-854A-9B8FB4B53699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD71000-48B4-4911-A4E3-8345C8F7591F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD71000-48B4-4911-A4E3-8345C8F7591F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD71000-48B4-4911-A4E3-8345C8F7591F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD71000-48B4-4911-A4E3-8345C8F7591F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B468BF14-2F1D-4CC3-B224-7A004883AA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B468BF14-2F1D-4CC3-B224-7A004883AA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B468BF14-2F1D-4CC3-B224-7A004883AA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B468BF14-2F1D-4CC3-B224-7A004883AA28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73E7ED2-D660-4729-AB72-3562748D4F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73E7ED2-D660-4729-AB72-3562748D4F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73E7ED2-D660-4729-AB72-3562748D4F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73E7ED2-D660-4729-AB72-3562748D4F64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +144,9 @@ Global
 		{35FE47D0-2D63-4810-BEB3-AC06C407D615} = {6D77697B-F5FF-4B3A-8288-A0E92CE1833F}
 		{DCE6D258-F2D2-4C3C-BB0A-97EED9DFAD11} = {9009466F-6043-4769-91E7-FD6D532F9152}
 		{7F712262-D52B-4ABF-854A-9B8FB4B53699} = {9009466F-6043-4769-91E7-FD6D532F9152}
+		{EAD71000-48B4-4911-A4E3-8345C8F7591F} = {B9303CFE-C742-474E-AAE9-3D05B57C7125}
+		{B468BF14-2F1D-4CC3-B224-7A004883AA28} = {B9303CFE-C742-474E-AAE9-3D05B57C7125}
+		{B73E7ED2-D660-4729-AB72-3562748D4F64} = {F9D657AC-941F-430B-AAA7-0E0B57E00FE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AAFCE9DE-4A00-442F-BF06-5E94E43D8FEB}

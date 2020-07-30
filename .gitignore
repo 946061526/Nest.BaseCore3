@@ -40,3 +40,9 @@
 /Nest.BaseCore/Nest.BaseCore.FirstApi/bin
 /Nest.BaseCore/Nest.BaseCore.Gateway/obj
 /Nest.BaseCore/Nest.BaseCore.Gateway/bin
+/Nest.BaseCore/Nest.BaseCore.Dapper/obj
+/Nest.BaseCore/Nest.BaseCore.Dapper/bin
+/Nest.BaseCore/Nest.BaseCore.NLog/bin
+/Nest.BaseCore/Nest.BaseCore.NLog/obj
+/Nest.BaseCore/Nest.BaseCore.RepositoryDapper/obj
+/Nest.BaseCore/Nest.BaseCore.RepositoryDapper/bin

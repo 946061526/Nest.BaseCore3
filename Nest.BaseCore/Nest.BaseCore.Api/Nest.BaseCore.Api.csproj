@@ -24,6 +24,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.4.0" />
@@ -37,6 +38,12 @@
     <ProjectReference Include="..\Nest.BaseCore.Common\Nest.BaseCore.Common.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj" />
     <ProjectReference Include="..\Nest.BaseCore.Log\Nest.BaseCore.Log.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 
