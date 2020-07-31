@@ -47,38 +47,41 @@ namespace Nest.BaseCore.Api
             //var mySqlConn = Configuration.GetConnectionString("MySQL");
             //services.AddDbContext<MainContext>(options => options.UseMySql(mySqlConn));
 
-            ////配置CAP
-            //services.AddCap(cap =>
-            //{
-            //    cap.UseEntityFramework<MainContext>();
+            //配置CAP
+            services.AddCap(cap =>
+            {
+                //cap.UseEntityFramework<MainContext>();
+                cap.UseSqlServer(Configuration.GetConnectionString("Default"));
 
-            //    //cap.UseMySql(mySqlConn);
-            //    //cap.UseRabbitMQ("localhost");
+                //cap.UseMySql(mySqlConn);
+                //cap.UseRabbitMQ("localhost");
 
-            //    //使用RabbitMQ
-            //    cap.UseRabbitMQ(rb =>
-            //    {
-            //        //rabbitmq服务器配置                   
-            //        rb.HostName = AppSettingsHelper.Configuration["MQConfig:Host"];
-            //        rb.Port = int.Parse(AppSettingsHelper.Configuration["MQConfig:Port"]);
-            //        rb.UserName = AppSettingsHelper.Configuration["MQConfig:UserName"];
-            //        rb.Password = AppSettingsHelper.Configuration["MQConfig:Password"];
-            //    });
+                //使用RabbitMQ
+                cap.UseRabbitMQ(rb =>
+                {
+                    //rabbitmq服务器配置                   
+                    rb.HostName = Configuration["MQConfig:Host"];
+                    rb.Port = int.Parse(Configuration["MQConfig:Port"]);
+                    rb.UserName = Configuration["MQConfig:UserName"];
+                    rb.Password = Configuration["MQConfig:Password"];
+                });
 
-            //    //设置处理成功的数据在数据库中保存的时间（秒），为保证系统新能，数据会定期清理。
-            //    cap.SucceedMessageExpiredAfter = 24 * 3600;
+                //设置处理成功的数据在数据库中保存的时间（秒），为保证系统新能，数据会定期清理。
+                cap.SucceedMessageExpiredAfter = 24 * 3600;
 
-            //    //设置失败重试次数
-            //    cap.FailedRetryCount = 5;
-            //});
+                //设置失败重试次数
+                cap.FailedRetryCount = 5;
+
+                //cap.FailedThresholdCallback = FailCallBack;
+            });
 
             #region 日志服务
-            ////初始化Net4Log
-            //ILoggerRepository repository = LogManager.CreateRepository("Net4LoggerRepository");
-            //XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//从log4net.config文件中读取配置信息
+            //初始化Net4Log
+            ILoggerRepository repository = LogManager.CreateRepository("Net4LoggerRepository");
+            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//从log4net.config文件中读取配置信息
 
-            ////注入Logger服务
-            //services.AddSingleton<IExceptionlessLogger, ExceptionlessLogger>();
+            //注入Logger服务
+            services.AddSingleton<IExceptionlessLogger, ExceptionlessLogger>();
 
             #endregion
 
@@ -112,10 +115,10 @@ namespace Nest.BaseCore.Api
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
 
 
-            //services.AddMvc(options =>
-            //{
-            //    options.Filters.Add<GlobalExceptionAttribute>();//统一异常处理
-            //}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<GlobalExceptionAttribute>();//统一异常处理
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             ////注入逻辑层服务
             //services.AddScoped<IUserService, UserService>()
@@ -135,6 +138,14 @@ namespace Nest.BaseCore.Api
             services.AddControllers();
 
         }
+
+        ////失败时的回调通知函数
+        //public void FailCallBack(DotNetCore.CAP..MessageType messageType, string messageName, string messageContent)
+        //{
+        //    Console.WriteLine($"失败回调:messageType:{messageType};messageName:{messageName};
+        //        messageContent:{ messageContent}
+        //    ");
+        // }
 
         /// <summary>
         /// autofac注入
@@ -167,9 +178,6 @@ namespace Nest.BaseCore.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "接口文档");
                 c.RoutePrefix = string.Empty;
             });
-
-            //启用cap中间件
-            //app.UseCap();
 
             // exceptionless
             app.UseExceptionless(Configuration["Exceptionless:ApiKey"]);

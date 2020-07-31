@@ -5,9 +5,11 @@ using Nest.BaseCore.BusinessLogic.IService;
 using Nest.BaseCore.Common;
 using Nest.BaseCore.Common.BaseModel;
 using Nest.BaseCore.Common.Extension;
+using Nest.BaseCore.Domain.MqModel;
 using Nest.BaseCore.Log;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Nest.BaseCore.Api.Controllers
 {
@@ -21,7 +23,7 @@ namespace Nest.BaseCore.Api.Controllers
     {
         //public IExceptionlessLogger _Log { get; }
         // private readonly IUserService _userService;
-        //private readonly ICapPublisher _publisher;
+        private readonly ICapPublisher _publisher;
 
         private readonly INLogService _nLogService;
 
@@ -33,9 +35,16 @@ namespace Nest.BaseCore.Api.Controllers
         //    _nLogService = nLogService;
         //}
 
-        public TestController(INLogService nLogService)
+        //public TestController(ICapPublisher publisher, INLogService nLogService)
+        //{
+        //    _publisher = publisher;
+        //    _nLogService = nLogService;
+        //}
+
+        private readonly ICapService _capService;
+        public TestController(ICapService capService)
         {
-            _nLogService = nLogService;
+            _capService = capService;
         }
 
         /// <summary>
@@ -421,36 +430,22 @@ namespace Nest.BaseCore.Api.Controllers
             return newDirPre;
         }
 
-        #region cap测试
+        #region CAP消息（RabbitMQ）
 
         /// <summary>
-        /// 发送的消息RouteKey，可以理解为消息管道的名称
+        /// 测试CAP发送消息
         /// </summary>
-        private const string CapTestQueue = "cap.test.queue";
-
-        /// <summary>
-        /// 发送mq
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public string SendMq(string message)
+        [HttpPost]
+        [Route("TestCap_SendMsg")]
+        public async Task TestCap_SendMsg()
         {
-            //_publisher.Publish(CapTestQueue, message);
-
-            return "发送成功";
-        }
-
-        /// <summary>
-        /// 接收mq
-        /// </summary>
-        /// <param name="message"></param>
-        [NonAction]
-        [CapSubscribe(CapTestQueue)]
-        public void GetMq(string message)
-        {
-            Console.WriteLine(DateTime.Now.ToString() + "收到消息:" + message);
-            //throw new Exception("测试失败重试");
+            IMqModel model = new TestMqModel()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Title = "测试mq",
+                Time = DateTime.Now
+            };
+            await _capService.Send("mqKey.test.log", model);
         }
 
         #endregion
