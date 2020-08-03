@@ -18,6 +18,13 @@ namespace Nest.BaseCore.BusinessLogic.IService
         /// <param name="MqName">消息名称（相当于MQ的消息管道）</param>
         /// <param name="MqModel">消息对象</param>
         /// <returns></returns>
-        Task Send(string MqName, IMqModel MqModel);
+        void Send(string MqName, IMqModel MqModel);
+        /// <summary>
+        /// 异步发送消息
+        /// </summary>
+        /// <param name="MqName">消息名称（相当于MQ的消息管道）</param>
+        /// <param name="MqModel">消息对象</param>
+        /// <returns></returns>
+        Task SendAsync(string MqName, IMqModel MqModel);
     }
 }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nest.BaseCore.Dapper\Nest.BaseCore.Dapper.csproj" />
+    <ProjectReference Include="..\Nest.BaseCore.Domain\Nest.BaseCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

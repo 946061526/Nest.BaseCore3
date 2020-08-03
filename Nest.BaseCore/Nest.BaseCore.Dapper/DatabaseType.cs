@@ -11,5 +11,6 @@ namespace Nest.BaseCore.Dapper
     {
         SqlServer,
         MySQL,
+        Oracle
     }
 }

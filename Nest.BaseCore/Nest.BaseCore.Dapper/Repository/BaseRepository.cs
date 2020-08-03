@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Nest.BaseCore.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,37 +14,46 @@ namespace Nest.BaseCore.Dapper
     /// <typeparam name="TKey"></typeparam>
     public class BaseRepository<T, TKey> : IBaseRepository<T, TKey> where T : class
     {
+        /// <summary>
+        /// 数据库连接
+        /// </summary>
         protected IDbConnection _dbConnection;
-        //private IOptions<DapperDbOption> _options;
-        //public BaseRepository(IOptions<DapperDbOption> options)
-        //{
-        //    _options = options;
-        //    if (_options == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(DapperDbOption));
-        //    }
-        //    _dbConnection = ConnectionFactory.CreateConnection(_options.Value.DbType, _options.Value.ConnectionString);
-        //}
 
-        public BaseRepository()
+        #region 创建数据库连接
+        public BaseRepository(DatabaseType databaseType)
         {
-            var dbTypeStr = "";// AppSettingsHelper[ AppConfigurtaionServices.Configuration.GetSection("DapperDbOpion").GetSection("DbType").Value;
-            if (string.IsNullOrEmpty(dbTypeStr))
-                throw new Exception("数据库类型配置不能为空");
+            var connSection = GetDbConnSection(databaseType);
 
-            var connSection = "";
-            var dbType = ConnectionFactory.GetDataBaseType(dbTypeStr);
-            if (dbType == DatabaseType.SqlServer)
-                connSection = "SqlServerConn";
-            else if (dbType == DatabaseType.MySQL)
-                connSection = "MySqlConn";
-
-            var ConnectionString = "";// AppConfigurtaionServices.Configuration.GetSection("DapperDbOpion").GetSection(connSection).Value;
+            var ConnectionString = AppSettingsHelper.Configuration.GetSection("DapperDbOpion").GetSection(connSection).Value;
             if (string.IsNullOrEmpty(ConnectionString))
                 throw new Exception("数据库连接字符串配置不能为空");
 
-            _dbConnection = ConnectionFactory.CreateConnection(dbTypeStr, ConnectionString);
+            _dbConnection = ConnectionFactory.CreateConnection(databaseType, ConnectionString);
         }
+
+        /// <summary>
+        /// 获取数据库连接节点名称
+        /// </summary>
+        /// <param name="databaseType"></param>
+        /// <returns></returns>
+        private string GetDbConnSection(DatabaseType databaseType)
+        {
+            var connSection = "SqlServerConn";
+            switch (databaseType)
+            {
+                case DatabaseType.MySQL:
+                    connSection = "MySqlConn";
+                    break;
+                case DatabaseType.Oracle:
+                    connSection = "OracleConn";
+                    break;
+                default:
+                    break;
+            }
+            return connSection;
+        }
+        #endregion
+
 
         #region 同步
         /// <summary>

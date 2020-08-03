@@ -445,7 +445,7 @@ namespace Nest.BaseCore.Api.Controllers
                 Title = "测试mq",
                 Time = DateTime.Now
             };
-            await _capService.Send("mqKey.test.log", model);
+            await _capService.SendAsync("mqKey.test.log", model);
         }
 
         #endregion

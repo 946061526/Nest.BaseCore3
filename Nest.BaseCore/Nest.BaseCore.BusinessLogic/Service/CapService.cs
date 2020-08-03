@@ -24,12 +24,22 @@ namespace Nest.BaseCore.BusinessLogic.Service
         }
 
         /// <summary>
-        /// Mq消息发送
+        /// 发送消息
+        /// </summary>
+        /// <param name="MqName"></param>
+        /// <param name="MqModel"></param>
+        public void Send(string MqName, IMqModel MqModel)
+        {
+            _publisher.Publish(MqName, MqModel);
+        }
+
+        /// <summary>
+        /// 异步发送消息
         /// </summary>
         /// <param name="MqName"></param>
         /// <param name="MqModel"></param>
         /// <returns></returns>
-        public async Task Send(string MqName, IMqModel MqModel)
+        public async Task SendAsync(string MqName, IMqModel MqModel)
         {
             await _publisher.PublishAsync(MqName, MqModel);
         }
