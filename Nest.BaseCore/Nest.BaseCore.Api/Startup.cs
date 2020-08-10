@@ -17,6 +17,7 @@ using Nest.BaseCore.BusinessLogic.IService;
 using Nest.BaseCore.BusinessLogic.Service;
 using Nest.BaseCore.Common;
 using Nest.BaseCore.Domain;
+using Nest.BaseCore.ElasticSearch;
 using Nest.BaseCore.Log;
 using Nest.BaseCore.NLogger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -133,6 +134,18 @@ namespace Nest.BaseCore.Api
             //services.Configure<DapperDbOption>(Configuration.GetSection("DapperDbOpion"));//数据库连接配置
             //services.AddScoped<IUnitOfWork, UnitOfWork>();//工作单元注入
             //services.AddScoped<ILogInfoRepository, TCT.Net.DDD.RepositoryDapper.Repository.LogInfoRepository>();//对应仓储注入
+            #endregion
+
+            #region ElasticSearch
+
+            services.AddSingleton<IEsClientProvider, EsClientProvider>();
+
+            var typesEs = Assembly.Load("Nest.BaseCore.RepositoryEs").GetTypes()
+                .Where(p => !p.IsAbstract && (p.GetInterfaces().Any(i => i == typeof(IBaseEsContext))))
+                .ToList();
+            typesEs.ForEach(p => services.AddTransient(p));
+
+            services.AddSingleton<Nest.BaseCore.BusinessLogic.Es.IDocService, Nest.BaseCore.BusinessLogic.Es.DocService>();
             #endregion
 
             services.AddControllers();
