@@ -370,61 +370,61 @@ namespace Nest.BaseCore.Cache
         /// <param name="db">redis database index</param>
         /// <param name="flags"></param>
         /// <param name="hashEntrys"></param>
-        /// <param name="key"></param>
-        public static void HashSet(IDatabase db, string key, List<HashEntry> hashEntrys, CommandFlags flags = CommandFlags.None)
+        /// <param name="hashKey"></param>
+        public static void HashSet(IDatabase db, string hashKey, List<HashEntry> hashEntrys, CommandFlags flags = CommandFlags.None)
         {
-            db.HashSet(key, hashEntrys.ToArray(), flags);
+            db.HashSet(hashKey, hashEntrys.ToArray(), flags);
         }
         /// <summary>
         /// Redis散列数据类型  新增一个
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
-        /// <param name="field"></param>
+        /// <param name="hashKey"></param>
+        /// <param name="itemKey"></param>
         /// <param name="val"></param>
-        public static void HashSet<T>(IDatabase db, string key, string field, T val, When when = When.Always, CommandFlags flags = CommandFlags.None)
+        public static void HashSet<T>(IDatabase db, string hashKey, string itemKey, T val, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
-            db.HashSet(key, field, JsonHelper.SerializeObject(val), when, flags);
+            db.HashSet(hashKey, itemKey, JsonHelper.SerializeObject(val), when, flags);
         }
         /// <summary>
         ///  Redis散列数据类型 获取指定key的指定field
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
-        /// <param name="field"></param>
+        /// <param name="hashKey"></param>
+        /// <param name="itemKey"></param>
         /// <returns></returns>
-        public static T HashGet<T>(IDatabase db, string key, string field) where T : class
+        public static T HashGet<T>(IDatabase db, string hashKey, string itemKey) where T : class
         {
-            var data = db.HashGet(key, field);
+            var data = db.HashGet(hashKey, itemKey);
             if (!data.HasValue)
             {
                 return null;
             }
-            return JsonHelper.DeserializeObject<T>(db.HashGet(key, field));
+            return JsonHelper.DeserializeObject<T>(db.HashGet(hashKey, itemKey));
         }
         /// <summary>
         ///  Redis散列数据类型 获取所有field所有值,以 HashEntry[]形式返回
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
+        /// <param name="hashKey"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static HashEntry[] HashGetAll(IDatabase db, string key, CommandFlags flags = CommandFlags.None)
+        public static HashEntry[] HashGetAll(IDatabase db, string hashKey, CommandFlags flags = CommandFlags.None)
         {
-            return db.HashGetAll(key, flags);
+            return db.HashGetAll(hashKey, flags);
         }
         /// <summary>
         /// Redis散列数据类型 获取key中所有field的值。
         /// </summary>
         /// <param name="db">redis database index</param>
         /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
+        /// <param name="hashKey"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static List<T> HashGetAllValues<T>(IDatabase db, string key, CommandFlags flags = CommandFlags.None) where T : class
+        public static List<T> HashGetAllValues<T>(IDatabase db, string hashKey, CommandFlags flags = CommandFlags.None) where T : class
         {
             List<T> list = new List<T>();
-            var hashVals = db.HashValues(key, flags).ToStringArray();
+            var hashVals = db.HashValues(hashKey, flags).ToStringArray();
             foreach (var item in hashVals)
             {
                 list.Add(JsonHelper.DeserializeObject<T>(item));
@@ -436,77 +436,77 @@ namespace Nest.BaseCore.Cache
         /// Redis散列数据类型 获取所有Key名称
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
+        /// <param name="hashKey"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static string[] HashGetAllKeys(IDatabase db, string key, CommandFlags flags = CommandFlags.None)
+        public static string[] HashGetAllKeys(IDatabase db, string hashKey, CommandFlags flags = CommandFlags.None)
         {
-            return db.HashKeys(key, flags).ToStringArray();
+            return db.HashKeys(hashKey, flags).ToStringArray();
         }
         /// <summary>
         ///  Redis散列数据类型  单个删除field
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
-        /// <param name="hashField"></param>
+        /// <param name="hashKey"></param>
+        /// <param name="itemKey"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static bool HashDelete(IDatabase db, string key, string hashField, CommandFlags flags = CommandFlags.None)
+        public static bool HashDelete(IDatabase db, string hashKey, string itemKey, CommandFlags flags = CommandFlags.None)
         {
-            return db.HashDelete(key, hashField, flags);
+            return db.HashDelete(hashKey, itemKey, flags);
         }
         /// <summary>
         ///  Redis散列数据类型  批量删除field
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
-        /// <param name="hashFields"></param>
+        /// <param name="hashKey"></param>
+        /// <param name="itemKeys"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static long HashDelete(IDatabase db, string key, string[] hashFields, CommandFlags flags = CommandFlags.None)
+        public static long HashDelete(IDatabase db, string hashKey, string[] itemKeys, CommandFlags flags = CommandFlags.None)
         {
             List<RedisValue> list = new List<RedisValue>();
-            for (int i = 0; i < hashFields.Length; i++)
+            for (int i = 0; i < itemKeys.Length; i++)
             {
-                list.Add(hashFields[i]);
+                list.Add(itemKeys[i]);
             }
-            return db.HashDelete(key, list.ToArray(), flags);
+            return db.HashDelete(hashKey, list.ToArray(), flags);
         }
         /// <summary>
         ///  Redis散列数据类型 判断指定键中是否存在此field
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
-        /// <param name="field"></param>
+        /// <param name="hashKey"></param>
+        /// <param name="itemKey"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static bool HashExists(IDatabase db, string key, string field, CommandFlags flags = CommandFlags.None)
+        public static bool HashExists(IDatabase db, string hashKey, string itemKey, CommandFlags flags = CommandFlags.None)
         {
-            return db.HashExists(key, field, flags);
+            return db.HashExists(hashKey, itemKey, flags);
         }
         /// <summary>
         /// Redis散列数据类型  获取指定key中field数量
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
+        /// <param name="hashKey"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static long HashLength(IDatabase db, string key, CommandFlags flags = CommandFlags.None)
+        public static long HashLength(IDatabase db, string hashKey, CommandFlags flags = CommandFlags.None)
         {
-            return db.HashLength(key, flags);
+            return db.HashLength(hashKey, flags);
         }
         /// <summary>
         /// Redis散列数据类型  为key中指定field增加incrVal值
         /// </summary>
         /// <param name="db">redis database index</param>
-        /// <param name="key"></param>
-        /// <param name="field"></param>
+        /// <param name="hashKey"></param>
+        /// <param name="itemKey"></param>
         /// <param name="incrVal"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static double HashIncrement(IDatabase db, string key, string field, double incrVal, CommandFlags flags = CommandFlags.None)
+        public static double HashIncrement(IDatabase db, string hashKey, string itemKey, double incrVal, CommandFlags flags = CommandFlags.None)
         {
-            return db.HashIncrement(key, field, incrVal, flags);
+            return db.HashIncrement(hashKey, itemKey, incrVal, flags);
         }
         #endregion
 
